@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+#ignore html files for statistics, only count python
+* linguist-vendored
+*.py linguist-vendored=false
