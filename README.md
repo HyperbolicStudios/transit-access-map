@@ -2,4 +2,4 @@
 
 Uses the Google Maps Directions API to make estimates of travel time to UVic from each StatsCan Census Dissemination Area by different modes of transport (transit, driving, and biking.)
 
-Written with Python, mapped in qGIS.
+View the maps here: https://markedwardson.me/transit-access-map/
