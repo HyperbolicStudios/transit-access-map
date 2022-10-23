@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Transit Access Maps</title>
+  <meta charset="UTF-8" />
+  <script src="https://kit.fontawesome.com/895917e848.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+</head>
+
+
+<body>
+
+  <header id="topHeader" onclick="openNav()">
+    <div></div>
+    <h3>Transit Access Maps</h3>
+
+    <a href="#" onclick="return openNav()" class="align-right openButton">Menu &nbsp;&#9776;</a>
+    <div></div>
+  </header>
+
+  <nav id="menu">
+    <a href="# " onclick="closeNav()">
+      <h5 class="menu-text close" id="closeButton">&times;</h5>
+    </a>
+    <a href="/">
+      <h5 class="menu-text">Home</h5>
+    </a>
+    <a href="https://github.com/hyperbolicstudios">
+      <h5 class="menu-text">Github</h5>
+    </a>
+    <a href="https://markedwardson.me">
+      <h5 class="menu-text">Portfolio</h5>
+    </a>
+    <div></div>
+
+  </nav>
+  <section class="divider">
+  </section>
+
+  <section class="container" id="selection">
+    <label>Select a City: </label>
+    <a href="Victoria.html" class="city" id="active-city" aria-pressed="true">Victoria</a>
+    <a href="vancouver.html" class="city" aria-pressed="true">Vancouver</a>
+    <div></div><div></div><div></div><div></div>
+    <label>Select a destination: </label>
+    <button type="button" class="destination" aria-pressed="true" onclick="update(this)">UVic</button>
+    <button type="button" class="destination" aria-pressed="false" onclick="update(this)">Downtown</button>
+    <label>Select a mode:</label>
+    <button type="button" class="mode" aria-pressed="true" onclick="update(this)">Transit</button>
+    <button type="button" class="mode" aria-pressed="false" onclick="update(this)">Bike</button>
+    <button type="button" class="mode" aria-pressed="false" onclick="update(this)">Car</button>
+  </section>
+
+  <h1 id="main-title">Travel time to UVic by Transit</h1>
+  <iframe title="title" class="map" scrolling="no" seamless="seamless" src="maps/vic/UVic_Transit Time.html" height="600" width="80%"></iframe>
+  <iframe title="title" class="map" scrolling="no" seamless="seamless" src="maps/vic/Downtown_Transit Time.html" height="600" width="80%"></iframe>
+  <iframe title="title" class="map" scrolling="no" seamless="seamless" src="maps/vic/Downtown_Bike Time.html" height="600" width="80%"></iframe>
+  <iframe title="title" class="map" scrolling="no" seamless="seamless" src="maps/vic/UVic_Bike Time.html" height="600" width="80%"></iframe>
+  <iframe title="title" class="map" scrolling="no" seamless="seamless" src="maps/vic/Downtown_Car Time.html" height="600" width="80%"></iframe>
+  <iframe title="title" class="map" scrolling="no" seamless="seamless" src="maps/vic/UVic_Car Time.html" height="600" width="80%"></iframe>
+
+
+
+  <div class="divider"></div>
+
+  <section class="container">
+
+    <p>
+      All time estimates are based on calculating a trip that would arrive at the chosen destination at 8:30AM on a September weekday. The start point of each trip is the centroid of the census DA. Data sources are the <a
+        href="https://developers.google.com/maps/">Google Maps API</a> and BC Transit's <a href="https://www.bctransit.com/open-data">Open Data</a>.
+    </p>
+    <p>A travel time estimate of -1 indicates that that mode of travel is not available for that particular location. Do not rely on this for trip planning purposes; I make no representations about the accuracy of this data.</p>
+    <p>This project is open sourced on <a title="Project Github" href="https://github.com/HyperbolicStudios/transit-access-map">Github.</a></p>
+
+  </section>
+  <div class="divider"></div>
+  <footer id="footer">
+
+    <p>&copy; 2022 Mark Edwardson</p>
+    <a title="Project Github" href="https://github.com/HyperbolicStudios/transit-access-map"><i class="fa-brands fa-github fa-2xl"></i></a>
+
+  </footer>
+
+</body>
+
+<script src="js/script.js" onload="set_initial_selected('Transit','UVic','vic')" ></script>
+
+</html>

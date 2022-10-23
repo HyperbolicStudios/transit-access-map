@@ -7,6 +7,7 @@ import traceback
 
 import pandas as pd
 import googlemaps
+import geopandas as gpd
 
 #set active directory to file location
 directory = abspath(getsourcefile(lambda:0))
@@ -18,7 +19,7 @@ else:
 os.chdir(newDirectory)
 
 gmaps = googlemaps.Client(os.environ["Google_Cloud_Credentials"])
-arrival_time=dt.datetime(2022, 9, 7, 8, 30) #arrive at 8:30AM on sept 7, 2022 (weekday, non-holiday schedule)
+arrival_time=dt.datetime(2022, 11, 8, 8, 30) #arrive at 8:30AM on sept 7, 2022 (weekday, non-holiday schedule)
 
 def dump(result):
     with open('json_data.json', 'w') as outfile:
@@ -31,6 +32,8 @@ def get_travel_time(start_point, destination, mode):
                                     destination,
                                     mode=mode,
                                     arrival_time=arrival_time)
+#    print(result)
+
         if mode == "transit":
             duration = (arrival_time.timestamp()-result[0]["legs"][0]["departure_time"]["value"])/60.0
 
@@ -50,14 +53,29 @@ def get_travel_time(start_point, destination, mode):
         #print("{}: {}".format(mode,val))
         return(duration)
     except:
-        #traceback.print_exc()
+    #    traceback.print_exc()
         return("???")
 
 
 def collect_data():
-    df = pd.read_csv('CRD census DAs.csv') #input file
+    df = gpd.read_file('vancouver.geojson')
+    df = df.to_crs('EPSG:4326')
+    df["center"] = df.centroid
 
-    destination = "UVic Exchange, Saanich, BC"
+    destination = "University of British Columbia, Vancouver"
+
+    for index in range(2748,len(df)):
+        print("{}/{}".format(index+1,len(df)))
+
+        coords = (df.loc[index,'center'].y,df.loc[index,'center'].x)
+        df.loc[index,'Transit Time'] = get_travel_time(coords, destination, "transit")
+        df.loc[index,'Car Time'] = get_travel_time(coords, destination, "driving")
+        df.loc[index,'Bike Time'] = get_travel_time(coords, destination, "bicycling")
+
+        df.to_csv("data/UBC Data.csv",index=False)
+
+    """
+    destination = "Downtown Vancouver"
 
     for index in df.index:
         print("{}/581".format(index+1))
@@ -67,19 +85,13 @@ def collect_data():
         df.loc[index,'Car Time'] = get_travel_time(coords, destination, "driving")
         df.loc[index,'Bike Time'] = get_travel_time(coords, destination, "bicycling")
 
-        df.to_csv("data/UVic Data.csv")
-
-    destination = "Fort St & Douglas St, Victoria, BC"
-
-    for index in df.index:
-        print("{}/581".format(index+1))
-    #if pd.isnull(df.loc[index, "Bike Time"]) == True:
-        coords = (df.loc[index,'Y'],df.loc[index,'X']) #latitude, longitude order
-        df.loc[index,'Transit Time'] = get_travel_time(coords, destination, "transit")
-        df.loc[index,'Car Time'] = get_travel_time(coords, destination, "driving")
-        df.loc[index,'Bike Time'] = get_travel_time(coords, destination, "bicycling")
-
-        df.to_csv("data/Downtown Data.csv")
+        df.to_csv("data/Downtown Vancouver Data.csv")
+        """
     return
 
-collect_data()
+#collect_data()
+df = gpd.read_file('vancouver.geojson')
+df = df.to_crs('EPSG:4326')
+print(df.columns)
+df = df.drop(['geometry'],axis=1)
+df.to_csv("master.csv")

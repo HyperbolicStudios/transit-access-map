@@ -15,12 +15,21 @@ function closeNav() {
   document.getElementById("menu").style.transform = "translateX(100%)";
 }
 
-var selected_mode = "Bus";
+var selected_mode = "Transit";
 var selected_destination = "UVic";
+var selected_city = "Victoria";
+
+function set_initial_selected(mode,dest,city) {
+  selected_mode = mode;
+  selected_destination = dest;
+  selected_city = city;
+  console.log("Set initial presets");
+
+}
 
 function swapMap() {
   $('#main-title').text("Travel time to " + selected_destination + " by " + selected_mode);
-  var path = "maps/" + selected_destination + "_" + selected_mode + " Time.html";
+  var path = "maps/" +selected_city + "/" + selected_destination + "_" + selected_mode + " Time.html";
   console.log(path);
   $(".map").each(function(i) {
     if ($(this).attr('src') == path) {

@@ -143,11 +143,12 @@ iframe {
 #selection {
   display: grid;
   width: 80%;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr 1fr 1fr 1fr;
+  grid-gap: 20px;
   height: 50px;
+  margin-bottom: 120px;
 }
-
-#selection>a>label, {}
 
 button {
   padding-top: 7px;
@@ -156,6 +157,23 @@ button {
   text-align: center;
   font-size: 17px;
   cursor: pointer;
+}
+
+#selection>a {
+  padding-top: 7px;
+  width: 120px;
+  text-align: center;
+  font-size: 17px;
+  cursor: pointer;
+  color: black;
+}
+
+.city {
+  background-color: #ebebeb;
+}
+
+#active-city {
+  background-color: #c4c4c4;
 }
 
 #selection>label {
