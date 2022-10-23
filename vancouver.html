@@ -2,22 +2,19 @@
 <html lang="en">
 
 <head>
-  <title>Transit Access Maps</title>
-  <meta charset="UTF-8" />
+
   <script src="https://kit.fontawesome.com/895917e848.js" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
-  <meta name="viewport" content="width=devane-width, initial-scale=1" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="favanon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favanon/favanon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favanon/favanon-16x16.png">
   <link rel="manifest" href="favanon/site.webmanifest">
 
-  <object data="filename.html"></object>
-
   <!-- HTML Meta Tags -->
   <title>Transit Access Maps</title>
+  <meta charset="UTF-8" />
   <meta name="description" content="How fast is Transit in BC?">
 
   <!-- Facebook Meta Tags -->
@@ -73,7 +70,10 @@
     <label>Select a City: </label>
     <a href="Victoria.html" class="city" aria-pressed="true">Victoria</a>
     <a href="vancouver.html" class="city" id="active-city" aria-pressed="true">Vancouver</a>
-    <div></div><div></div><div></div><div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
     <label>Select a destination: </label>
     <button type="button" class="destination" aria-pressed="true" onclick="update(this)">UBC</button>
     <button type="button" class="destination" aria-pressed="false" onclick="update(this)">Downtown</button>
@@ -115,6 +115,6 @@
 
 </body>
 
-<script src="js/script.js" onload="set_initial_selected('Transit','UBC','van')" ></script>
+<script src="js/script.js" onload="set_initial_selected('Transit','UBC','van')"></script>
 
 </html>
