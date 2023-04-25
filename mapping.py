@@ -50,7 +50,8 @@ def make_maps():
                                        mapbox_style="carto-positron",
                                        zoom=10, center = {"lat": 49.238048, "lon": -123.096121},
                                        opacity=.5,
-                                       custom_data = ['id',"Transit Time","Bike Time","Car Time"]
+                                       custom_data = ['id',"Transit Time","Bike Time","Car Time"],
+                                       
                                        )
             fig.update_traces(hovertemplate = """
                 <b>Census ID:</b> %{customdata[0]} <br>
@@ -58,7 +59,7 @@ def make_maps():
                 <b>Bike Time:</b> %{customdata[2]} minutes   <br>
                 <b>Car Time:</b> %{customdata[3]} minutes"""
                                                  )
-
+            
             fig.write_html("maps/{}_{}.html".format(data_set[:data_set.find(" ")],mode))
             print('Made figure for {} to {}'.format(mode,data_set))
 

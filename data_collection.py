@@ -95,3 +95,4 @@ df = df.to_crs('EPSG:4326')
 print(df.columns)
 df = df.drop(['geometry'],axis=1)
 df.to_csv("master.csv")
+
